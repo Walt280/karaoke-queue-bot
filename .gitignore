@@ -161,3 +161,7 @@ cython_debug/
 
 # Discord API key file (don't want this in a *public* repo!)
 keys.yaml
+
+# Other unneeded files
+data.db
+config.yaml
