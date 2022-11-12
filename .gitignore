@@ -165,3 +165,4 @@ keys.yaml
 # Other unneeded files
 data.db
 config.yaml
+.vscode/
