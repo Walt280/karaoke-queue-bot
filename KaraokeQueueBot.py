@@ -64,7 +64,12 @@ class KaraokeQueueBot():
     def __init__(self, bot: commands.Bot, config: KaraokeQueueBotConfig) -> None:
         super().__init__()
         self.config = config
-        self.db_engine = sa_async.create_async_engine(f"sqlite+aiosqlite:///{self.config.db_path}", future=True)
+        if(self.config.db_path):
+            db_url = f"sqlite+aiosqlite:///{os.path.abspath(self.config.db_path)}"
+        else:
+            db_url = "sqlite+aiosqlite://"
+
+        self.db_engine = sa_async.create_async_engine(db_url, future=True)
         self.db_sessionmaker = sa_orm.sessionmaker(bind=self.db_engine, expire_on_commit=False, class_=sa_async.AsyncSession, future=True)
         self.bot = bot
 
@@ -74,7 +79,6 @@ class KaraokeQueueBot():
 
         asyncio.run(create_tables(self.db_engine))
 
-        logging.basicConfig(filename=self.config.log_path, encoding='UTF-8', level=self.config.log_level)
         self._register_commands()
 
     # Based on: https://stackoverflow.com/a/74012742

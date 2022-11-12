@@ -1,0 +1,8 @@
+config:
+  discord_token: "TOKEN" # Discord bot token
+  log_path: "LOG_PATH" # Path for the logs, leave empty to output to stdout. (Currently broken)
+  sqlite_database_path: "DB_PATH" # Path for the database, leave empty for in-memory database.
+  logging_level: "info" # Logging level. (Currently broken)
+  guild_ids: [
+    # The ids of servers that you want to use this bot on.
+  ]
