@@ -47,13 +47,8 @@ class KaraokeQueueBotConfig():
         data = in_data["config"]
         
         log_path = data["log_path"]
-        if(not log_path):
-            raise KaraokeQueueBotConfigError("Log path is empty!")
-
         db_path = data["sqlite_database_path"]
-        if(not db_path):
-            raise KaraokeQueueBotConfigError("Database path is empty!")
-
+        
         log_level = log_str_map.get(data["logging_level"].lower(), logging.INFO)
 
         guild_ids = data["guild_ids"]
